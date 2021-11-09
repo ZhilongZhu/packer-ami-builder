@@ -1,0 +1,24 @@
+name: 'Packer AMI Builder'
+author: 'zhilongzhu'
+description: 'Use GitHub Action to execute Packer AMI build'
+branding:
+  color: 'blue'
+  icon: 'anchor'
+
+inputs:
+  packerVersion:
+    description: 'Version of Packer will be used'
+    required: false
+    default: 'latest'
+  packerArgs:
+    description: 'Arguments that will be passed down to the packer command'
+    required: true
+  workDir:
+    description: 'Working directory inside the container'
+    required: false
+    default: '.'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.packerVersion }}
